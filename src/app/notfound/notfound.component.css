@@ -1,0 +1,14 @@
+.section{
+  height: 100%;
+  overflow: hidden;
+}
+.c{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h2{
+  font-size: 54px;
+  color: white;
+}
