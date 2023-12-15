@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html", "./src/**/*.{js,ts}"],
+  mode:'jit',
+  content: ['./src/**/*.{html,ts}'],
   theme: {
     container:{
       padding:{
@@ -27,8 +28,7 @@ module.exports = {
       backgroundImage:{
         'profile': "url('/assets/img/gab.png')"
       }
-    }
+    },
   },
   plugins: [],
-}
-
+};

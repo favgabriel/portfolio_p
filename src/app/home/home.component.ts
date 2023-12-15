@@ -24,7 +24,7 @@ import { Subject, interval, takeUntil } from 'rxjs';
         </p>
         <div class="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0">
           <button class="btn btn-lg" (click)="contact()">Contact me</button>
-          <a href="/portoflio" class="text-gradient btn-link">My Portfolio</a>
+          <a href="/portfolio" class="text-gradient btn-link">My Portfolio</a>
         </div>
         <div class="flex text-[20px] gap-x-6 max-w-max mx-auto lg:mx-0">
           <a href="https://github.com/favgabriel"><fa-icon [icon]="github"></fa-icon></a>

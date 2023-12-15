@@ -78,7 +78,7 @@ import { Router } from '@angular/router';
   ],
 })
 export class PortfolioComponent {
-  project1 = "/assets/img/soft.jpg"
+  project1 = "/assets/img/findme.png"
   project2 = "/assets/img/project2.png"
   project3 = "/assets/img/project3.png"
 

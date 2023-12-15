@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
         <div class="flex flex-col lg:flex-row gap-x-3">
           <div  [@fadeIn] class="flex-1 lg:bg-profile lg:bg-bottom bg-no-repeat object-contain mix-blend-lighten mb-12 lg:mb-0">
             <h2 class="h2 text-pink-700 mb-6">What I do</h2>
-            <h3 class="h3 max-w-[455px] mb-16">I'm a Fullstack and Android developer with over 5 years of experience</h3>
+            <h3 class="h3 max-w-[455px] mb-16">I'm a fullstack web and android developer with over 5 years of experience</h3>
             <button class="btn btn-lg" (click)="portfolio()">See my work</button>
           </div>
           <div [@fadeInRight] class="flex-1">
@@ -63,7 +63,7 @@ export class ServiceComponent {
         description:'I design and model 2D drawings into 3D models with SOLIDWORKS',
       },{
         name:'Project Management',
-        description:'I manage projects from initial to completion delivery a concise technical presentation',
+        description:'I manage projects delivery a concise technical presentation',
       },{
         name:'Embedded System design',
         description:'I build and automate engineering designs with Arduino',

@@ -1,7 +1,11 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from '../email.service';
+import { EMPTY, catchError } from 'rxjs';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ModalConfig } from '../modals/modal/modal.config';
+import { ModalComponent } from '../modals/modal/modal.component';
 
 @Component({
   selector: 'app-contact',
@@ -17,14 +21,24 @@ import { EmailService } from '../email.service';
           </div>
           <form #contactform="ngForm" (ngSubmit)="sendemail()" [@fadeRight] class="flex-1 border rounded-2xl flex flex-col gap-y-6 pb-24 p-6 items-start">
             <input [(ngModel)]="name" name="name" required class="form-control ng-valid bg-transparent border-b py-3 outline-none w-full
-             placeholder:text-white focus:border-pink-700 transition-all" type="text" placeholder="your name" />
+             placeholder:text-white focus:border-pink-700 text-white transition-all" type="text" placeholder="your name" #nname="ngModel"/>
+             <div *ngIf="nname.invalid && (nname.dirty || nname.touched)" class="alert alert-danger">
+              <div *ngIf="nname.errors?.['required']">Name is required</div>
+             </div>
             <input [(ngModel)]="email" name="email" required class="form-control ng-valid bg-transparent border-b py-3 outline-none w-full
-             placeholder:text-white focus:border-pink-700 transition-all" type="email" placeholder="your email" />
-            <textarea [(ngModel)]="message" name="message" required class="form-control ng-valid bg-transparent border-b py-12 outline-none w-full
-             placeholder:text-white focus:border-pink-700 transition-all resize-none mb-12" placeholder="type your message"></textarea>
-            <button [disabled]="" class="btn btn-lg" type="submit">Send message</button>
+             placeholder:text-white focus:border-pink-700 text-white transition-all" type="email" placeholder="your email" #nemail="ngModel"/>
+             <div *ngIf="nemail.invalid && (nemail.dirty || nemail.touched)" class="alert alert-danger">
+              <div *ngIf="nemail.errors?.['required']">Email is required</div>
+              </div>
+              <textarea [(ngModel)]="message" name="message" required class="form-control ng-valid bg-transparent border-b py-12 outline-none w-full
+             placeholder:text-white focus:border-pink-700 text-white transition-all resize-none mb-12" placeholder="type your message" #nmessage="ngModel"></textarea>
+             <div *ngIf="nmessage.invalid && (nmessage.dirty || nmessage.touched)" class="alert alert-danger">
+              <div *ngIf="nmessage.errors?.['required']">Mesage cannot be empty</div>
+              </div>
+              <button [disabled]="nname.invalid || nemail.invalid || nmessage.invalid" class="btn btn-lg" type="submit">Send message</button>
           </form>
         </div>
+        <app-modal #modal [modalConfig]="modalConfig">{{resp}}</app-modal>
       </div>
   </section>
   `,
@@ -50,17 +64,33 @@ import { EmailService } from '../email.service';
     ]),
   ]
 })
-export class ContactComponent {
+export class ContactComponent implements OnInit{
+  @ViewChild('contactform', {static: false}) myForm!: NgForm;
   message: string="";
   email: string="";
   name: string ="";
+  modalConfig!: ModalConfig;
+  @ViewChild('modal') private modalcomponent!: ModalComponent
+  resp!:string
+
   constructor(private emailclient: EmailService){}
 
+  ngOnInit(): void {
+  }
+
   sendemail(){
-    this.emailclient.sendEmail(this.name,this.email,this.message).subscribe({
-      complete:()=> {this.name="",this.email="",this.message=""},
-      error: err => alert("error sending email.")
-    })
-    console.log(this.email)
+    this.emailclient.sendEmail(this.name, this.email, this.message)
+    .subscribe( response => {
+        this.myForm.resetForm()
+        this.resp="Alright great!, i have received your message, i would be in touch soon"
+        this.openModal()
+      },(e:HttpErrorResponse)=>{
+        this.resp = "Error occured sending message to me, please you can try again !"
+        this.openModal()
+      });
+  }
+
+  async openModal(){
+    return await this.modalcomponent.open()
   }
 }
