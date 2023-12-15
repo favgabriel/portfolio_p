@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  BACKEND_URL:`http://localhost:3010/sendemail`
+  BACKEND_URL:`https://aighangbe-favour-bf4dd8a71c33.herokuapp.com/sendemail`
 }
