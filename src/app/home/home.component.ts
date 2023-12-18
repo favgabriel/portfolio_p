@@ -11,10 +11,10 @@ import { Subject, interval, takeUntil } from 'rxjs';
   <div class="container mx-auto">
     <div class="flex flex-col gap-y-8 lg:flex-row lg:items-center lg:gap-x-12">
       <div class="flex-1 text-center lg:text-left">
-        <h1 appSlideup class="text-[55px] font-bold font-primary leading-[0.8] lg:text-[110px]">
-          Favour <span>Gabriel</span>
+        <h1 appSlideup class="text-[45px] font-bold font-primary leading-[0.8] lg:text-[110px]">
+          Hi, it's Favour <span>Gabriel</span>
         </h1>
-        <div appSlideup class="mb-6 text-[36px] lg:text-[60px] font-secondary font-semibold uppercase leading-[1]">
+        <div appSlideup class="mb-6 text-[30px] lg:text-[56px] font-secondary font-semibold uppercase leading-[1]">
           <span class="text-white mr-4">I AM A<span *ngIf="profession === 'Entrepreneur'">N</span> </span>
           <span class=" text-pink-700"> {{profession}}</span>
         </div>
