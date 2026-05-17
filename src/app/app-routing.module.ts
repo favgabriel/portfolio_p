@@ -8,12 +8,12 @@ import { ServiceComponent } from './service/service.component';
 import { ContactComponent } from './contact/contact.component';
 
 const routes: Routes = [{path:'',redirectTo:'home',pathMatch:'full'},
-{path:'home',component:HomeComponent},
-{path:'about',component:AboutComponent},
-{path:'portfolio',component:PortfolioComponent},
-{path:'services',component:ServiceComponent},
-{path:'contact',component:ContactComponent},
-{path:'**',component:NotfoundComponent}];
+{path:'home',component:HomeComponent, title:'Home | Favour Gabriel'},
+{path:'about',component:AboutComponent, title:'About | Favour Gabriel'},
+{path:'portfolio',component:PortfolioComponent, title:'Portfolio | Favour Gabriel'},
+{path:'services',component:ServiceComponent, title:'Services | Favour Gabriel'},
+{path:'contact',component:ContactComponent, title:'Contact | Favour Gabriel'},
+{path:'**',component:NotfoundComponent, title:'Not Found | Favour Gabriel'}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

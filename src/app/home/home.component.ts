@@ -27,13 +27,13 @@ import { Subject, interval, takeUntil } from 'rxjs';
           <a href="/portfolio" class="text-gradient btn-link">My Portfolio</a>
         </div>
         <div class="flex text-[38px] gap-x-6 max-w-max mx-auto lg:mx-0">
-          <a href="https://github.com/favgabriel"><fa-icon [icon]="github"></fa-icon></a>
-          <a href="https://linkedin.com/in/favour-gabriel"><fa-icon [icon]="linkedin"></fa-icon></a>
-          <a href="https://twitter.com/favurgabriel"><fa-icon [icon]="twitter"></fa-icon></a>
+          <a href="https://github.com/favgabriel" aria-label="GitHub"><fa-icon [icon]="github"></fa-icon></a>
+          <a href="https://linkedin.com/in/favour-gabriel" aria-label="LinkedIn"><fa-icon [icon]="linkedin"></fa-icon></a>
+          <a href="https://twitter.com/favurgabriel" aria-label="Twitter"><fa-icon [icon]="twitter"></fa-icon></a>
         </div>
       </div>
     <div [@slideInLeft] class=" hidden lg:flex flex-1 lg:min-w-[482px]">
-        <img [src]="image" alt="img" class=" mix-blend-lighten object-contain"/>
+        <img [src]="image" alt="Favour Gabriel profile" class=" mix-blend-lighten object-contain"/>
     </div>
 </div>
 </div>

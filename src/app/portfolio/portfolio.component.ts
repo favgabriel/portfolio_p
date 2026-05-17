@@ -22,7 +22,7 @@ import { Router } from '@angular/router';
           </div>
           <div class="group relative overflow-hidden border-2 border-white/50 rounded-xl">
             <div class="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project1" alt="project1">
+            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project1" alt="FindMe Android App">
             <div class="absolute bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
               <span class="text-gradient">Android</span></div>
             <div class="absolute bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
         <div [@fadeInRight] class="flex-1 flex flex-col gap-y-10">
           <div class="group relative overflow-hidden border-2 border-white/50 rounded-xl">
             <div class="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project3" alt="project1">
+            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project3" alt="Heo Banks web application">
             <div class="absolute bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
               <span class="text-gradient">Web Application</span></div>
             <div class="absolute bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">
@@ -43,7 +43,7 @@ import { Router } from '@angular/router';
 
           <div class="group relative overflow-hidden border-2 border-white/50 rounded-xl">
             <div class="group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300"></div>
-            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project2" alt="project1">
+            <img class=" group-hover:scale-125 transition-all duration-500" [src]="project2" alt="Thermo web design project">
             <div class="absolute bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50">
               <span class="text-gradient">Web design</span></div>
             <div class="absolute bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50">

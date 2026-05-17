@@ -1,9 +1,7 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmailService } from '../email.service';
-import { EMPTY, catchError } from 'rxjs';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ModalConfig } from '../modals/modal/modal.config';
 import { ModalComponent } from '../modals/modal/modal.component';
 
@@ -35,7 +33,13 @@ import { ModalComponent } from '../modals/modal/modal.component';
              <div *ngIf="nmessage.invalid && (nmessage.dirty || nmessage.touched)" class="alert alert-danger">
               <div *ngIf="nmessage.errors?.['required']">Mesage cannot be empty</div>
               </div>
-              <button [disabled]="nname.invalid || nemail.invalid || nmessage.invalid" class="btn btn-lg" type="submit">Send message</button>
+               <div *ngIf="formSubmitted" class="w-full text-center py-2 rounded" [class.text-green-400]="formSuccess" [class.text-red-400]="!formSuccess">
+                 {{ formSuccess ? 'Message sent successfully!' : 'Failed to send. Please try again.' }}
+               </div>
+               <button [disabled]="nname.invalid || nemail.invalid || nmessage.invalid || sending" class="btn btn-lg flex items-center gap-2" type="submit">
+                 <span *ngIf="sending" class="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+                 {{ sending ? 'Sending...' : 'Send message' }}
+               </button>
           </form>
         </div>
         <app-modal #modal [modalConfig]="modalConfig">{{resp}}</app-modal>
@@ -69,7 +73,14 @@ export class ContactComponent implements OnInit{
   message: string="";
   email: string="";
   name: string ="";
-  modalConfig!: ModalConfig;
+  sending = false;
+  formSubmitted = false;
+  formSuccess = false;
+  modalConfig: ModalConfig = {
+    modalTitle: 'Message Status',
+    dismissButtonLabel: 'Close',
+    hideCloseButton: () => true,
+  };
   @ViewChild('modal') private modalcomponent!: ModalComponent
   resp!:string
 
@@ -79,15 +90,27 @@ export class ContactComponent implements OnInit{
   }
 
   sendemail(){
+    if (this.sending) return;
+    this.sending = true;
+    this.formSubmitted = false;
     this.emailclient.sendEmail(this.name, this.email, this.message)
-    .subscribe( response => {
+    .subscribe({
+      next: () => {
+        this.sending = false;
+        this.formSubmitted = true;
+        this.formSuccess = true;
         this.myForm.resetForm()
         this.resp="Alright great!, i have received your message, i would be in touch soon"
         this.openModal()
-      },(e:HttpErrorResponse)=>{
+      },
+      error: () => {
+        this.sending = false;
+        this.formSubmitted = true;
+        this.formSuccess = false;
         this.resp = "Error occured sending message to me, please you can try again !"
         this.openModal()
-      });
+      }
+    });
   }
 
   async openModal(){
