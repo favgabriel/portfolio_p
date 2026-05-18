@@ -8,7 +8,6 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { NotfoundComponent } from './notfound/notfound.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HeaderComponent } from './header/header.component';
 import { TypeWriterDirective } from './animations/type-writer.directive';
 import { SlideupDirective } from './animations/slideup.directive';
@@ -38,7 +37,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule,
     BrowserAnimationsModule,
     NgxTypedJsModule,
     FormsModule,

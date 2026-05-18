@@ -1,7 +1,6 @@
 import { style, transition, trigger, animate } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { faGithub, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Subject, interval, takeUntil } from 'rxjs';
 
 @Component({
@@ -15,25 +14,25 @@ import { Subject, interval, takeUntil } from 'rxjs';
           Hi, it's Favour <span>Gabriel</span>
         </h1>
         <div appSlideup class="mb-6 text-[30px] lg:text-[56px] font-secondary font-semibold uppercase leading-[1]">
-          <span class="text-white mr-4">I AM A<span *ngIf="profession === 'Entrepreneur'">N</span> </span>
-          <span class=" text-pink-700"> {{profession}}</span>
+          <span class="text-white mr-4">I AM A </span>
+          <span class="text-pink-700">{{profession}}</span>
         </div>
 
-        <p appSlideup class="mb-8 max-w-lg mx-auto lg:mx-0">
-          I'm a passionate and skilled professional, with a track record of delivery successful client and enterprised based projects
+        <p appSlideup class="mb-8 max-w-lg mx-auto lg:mx-0 text-white/70">
+          Software engineer with 4+ years of production experience building real-time mobile applications and backend services. Available to relocate to the UK.
         </p>
         <div class="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0">
           <button class="btn btn-lg" (click)="contact()">Contact me</button>
-          <a href="/portfolio" class="text-gradient btn-link">My Portfolio</a>
+          <a routerLink="/portfolio" class="text-gradient btn-link">My Portfolio</a>
         </div>
         <div class="flex text-[38px] gap-x-6 max-w-max mx-auto lg:mx-0">
-          <a href="https://github.com/favgabriel" aria-label="GitHub"><fa-icon [icon]="github"></fa-icon></a>
-          <a href="https://linkedin.com/in/favour-gabriel" aria-label="LinkedIn"><fa-icon [icon]="linkedin"></fa-icon></a>
-          <a href="https://twitter.com/favurgabriel" aria-label="Twitter"><fa-icon [icon]="twitter"></fa-icon></a>
+          <a href="https://github.com/favgabriel" aria-label="GitHub" class="hover:text-pink-400 transition-colors">GH</a>
+          <a href="https://linkedin.com/in/favour-gabriel" aria-label="LinkedIn" class="hover:text-pink-400 transition-colors">IN</a>
+          <a href="https://twitter.com/favurgabriel" aria-label="Twitter" class="hover:text-pink-400 transition-colors">TW</a>
         </div>
       </div>
-    <div [@slideInLeft] class=" hidden lg:flex flex-1 lg:min-w-[482px]">
-        <img [src]="image" alt="Favour Gabriel profile" class=" mix-blend-lighten object-contain"/>
+    <div [@slideInLeft] class="hidden lg:flex flex-1 lg:min-w-[482px]">
+        <img [src]="image" alt="Favour Gabriel profile" class="mix-blend-lighten object-contain"/>
     </div>
 </div>
 </div>
@@ -46,19 +45,15 @@ import { Subject, interval, takeUntil } from 'rxjs';
         animate('500ms ease-out', style({ transform:'translateX(0)'})),
       ]),
       transition(':leave',[
-        animate('500ms ease-out', style({transform: 'translateX(100%'})),
+        animate('500ms ease-out', style({transform: 'translateX(100%)'})),
       ])
     ])
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  github = faGithub
-  linkedin = faLinkedin
-  twitter = faTwitter
-  anim = true
   profession: string | undefined;
   image = "/assets/img/gab.png"
-  professions: Array<string> = ['Software Developer', 'Mechanical Engineer', 'Entrepreneur']
+  professions: Array<string> = ['Mobile Developer', 'Backend Engineer', 'IoT Specialist']
   ngUnsubscribe: Subject<any> = new Subject()
   constructor(private router: Router){}
   contact(): void{
@@ -69,9 +64,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     interval(5000)
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(() => {
-        const fruitIndex = this.professions.findIndex((profession) => profession === this.profession)
-        const nextFruit = this.professions[fruitIndex + 1]
-        this.profession = nextFruit ? nextFruit : this.professions[0]
+        const index = this.professions.findIndex((p) => p === this.profession)
+        const next = this.professions[index + 1]
+        this.profession = next ? next : this.professions[0]
       })
   }
 

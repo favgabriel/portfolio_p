@@ -1,48 +1,51 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject, interval, pipe, takeUntil } from 'rxjs';
+import { Subject, interval, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-about',
   template:`
-  <section class="section">
+  <section class="section min-h-screen">
     <div class="container mx-auto">
-      <div class="flex flex-col gap-y-10 lg:flex-row lg:items-center lg:gap-x-20 lg:gap-y-0 h-screen">
+      <div class="flex flex-col gap-y-10 lg:flex-row lg:items-center lg:gap-x-20 lg:gap-y-0">
         <div [@fadeIn] class="flex-1 bg-profile bg-contain bg-no-repeat h-[640px] mix-blend-color-dodge bg-top"></div>
         <div [@fadeInRight] class="flex-1">
           <h2 class="h2 text-pink-700 mb-4">About me</h2>
-          <ngx-typed-js [strings]="['I am a fullstack backend and android developer, with over 5 years of experience.',
-          'I am a Mechanical Design Engineer with experience in 3D modelling, Embedded systems']"
+          <ngx-typed-js [strings]="['Mobile & Backend Software Engineer with 4+ years of production experience.',
+          'Building real-time systems, API design, and production reliability.',
+          'Mechanical Engineer with expertise in IoT, PCB design, and embedded systems.']"
           [loop]="true"
           [showCursor]="false">
             <h3 class="typing mb-4 h3"></h3>
           </ngx-typed-js>
-          <div class="mb-6" *ngFor="let info of attributes">
-            <p class="text-base cursor-default">{{info}}</p>
+          <div class="mb-6 space-y-2">
+            <p class="text-base cursor-default text-white/70">
+              Software engineer with a proven track record owning features end-to-end — from Firebase Cloud Functions to Kotlin Android clients. Seeking to contribute to innovative product development in the UK market.
+            </p>
           </div>
-          <div class=" flex gap-x-6 lg:gap-x-10 mb-12">
+          <div class="flex gap-x-6 lg:gap-x-10 mb-12">
               <div>
                 <div class="font-tertiary text-gradient text-[40px] mb-2">
                   {{experience_count}}+
                 </div>
-                <div class=" font-normal text-sm tracking-[2px]">
+                <div class="font-normal text-sm tracking-[2px]">
                   Years of <br/> experience
                 </div>
               </div>
               <div>
                 <div class="font-tertiary text-gradient text-[40px] mb-2">
-                  {{project_count}}k+
+                  {{project_count}}+
                 </div>
-                <div class=" font-normal text-sm tracking-[2px]">
+                <div class="font-normal text-sm tracking-[2px]">
                   Projects <br/> Completed
                 </div>
               </div>
               <div>
                 <div class="font-tertiary text-gradient text-[40px] mb-2">
-                  {{clients_count}}k+
+                  {{clients_count}}+
                 </div>
-                <div class=" font-normal text-sm tracking-[2px]">
+                <div class="font-normal text-sm tracking-[2px]">
                   Satisfied <br/> Clients
                 </div>
               </div>
@@ -54,7 +57,6 @@ import { Subject, interval, pipe, takeUntil } from 'rxjs';
         </div>
       </div>
     </div>
-
   </section>
 `,
   styleUrls: ['./about.component.css'],
@@ -88,9 +90,7 @@ export class AboutComponent implements AfterViewInit, OnDestroy{
   project_count = 0
   clients_count = 0
   unsubscribe: Subject<any> = new Subject()
-  constructor(private router: Router){
-
-  }
+  constructor(private router: Router){}
   contact(): void{
     this.router.navigate(['contact'])
   }
@@ -102,19 +102,9 @@ export class AboutComponent implements AfterViewInit, OnDestroy{
     interval(600)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe(()=>{
-      this.experience_count ===7 ? this.experience_count: this.experience_count++
-      this.project_count === 50 ? this.project_count : this.project_count++
-      this.clients_count === 45 ? this.clients_count : this.clients_count++
+      this.experience_count === 4 ? this.experience_count : this.experience_count++
+      this.project_count === 10 ? this.project_count : this.project_count++
+      this.clients_count === 5 ? this.clients_count : this.clients_count++
     })
   }
-
-  attributes =[
-    "I have a wild range of Skills in delivery Excellent Client based applications in Both:",
-    "Frontend using MERN and MEAN stack",
-    "Backend with Node Js, Spring Boot, Flask",
-    "Android with Java, Kotlin",
-    "Cloud Services using AWS EC2, ElasticBeanstalk, Nginx, S3 bucket",
-    "Embedded Designs using Arduino, Rasperry PI",
-    "3D CAD designs with SOLIDWORKS"
-  ]
 }

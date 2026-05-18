@@ -15,6 +15,20 @@ import { ModalComponent } from '../modals/modal/modal.component';
             <div>
               <h4 class="text-xl uppercase text-pink-700 font-medium mb-2 tracking-wide">Get in touch now</h4>
               <h2 class="text-[45px] lg:text-[90px] leading-none mb-12">Let's build <br/> together!</h2>
+              <div class="space-y-4 mb-8">
+                <a href="mailto:aighangbe@gmail.com" class="flex items-center gap-3 text-white/70 hover:text-pink-400 transition-colors">
+                  <span class="text-pink-400">&#9993;</span>
+                  <span>aighangbe@gmail.com</span>
+                </a>
+                <a href="tel:+2348165005846" class="flex items-center gap-3 text-white/70 hover:text-pink-400 transition-colors">
+                  <span class="text-pink-400">&#9742;</span>
+                  <span>+234 816 500 5846</span>
+                </a>
+                <a href="https://linkedin.com/in/favour-gabriel" target="_blank" class="flex items-center gap-3 text-white/70 hover:text-pink-400 transition-colors">
+                  <span class="text-pink-400">&#128188;</span>
+                  <span>linkedin.com/in/favour-gabriel</span>
+                </a>
+              </div>
             </div>
           </div>
           <form #contactform="ngForm" (ngSubmit)="sendemail()" [@fadeRight] class="flex-1 border rounded-2xl flex flex-col gap-y-6 pb-24 p-6 items-start">
@@ -31,7 +45,7 @@ import { ModalComponent } from '../modals/modal/modal.component';
               <textarea [(ngModel)]="message" name="message" required class="form-control ng-valid bg-transparent border-b py-12 outline-none w-full
              placeholder:text-white focus:border-pink-700 text-white transition-all resize-none mb-12" placeholder="type your message" #nmessage="ngModel"></textarea>
              <div *ngIf="nmessage.invalid && (nmessage.dirty || nmessage.touched)" class="alert alert-danger">
-              <div *ngIf="nmessage.errors?.['required']">Mesage cannot be empty</div>
+              <div *ngIf="nmessage.errors?.['required']">Message cannot be empty</div>
               </div>
                <div *ngIf="formSubmitted" class="w-full text-center py-2 rounded" [class.text-green-400]="formSuccess" [class.text-red-400]="!formSuccess">
                  {{ formSuccess ? 'Message sent successfully!' : 'Failed to send. Please try again.' }}

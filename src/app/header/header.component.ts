@@ -7,11 +7,14 @@ import { Router } from '@angular/router';
     <header class="py-8">
       <div class="pr-8 pl-8 mx-auto">
         <div class="flex justify-between items-center">
-          <h2 class="h2 capitalize">
-            <a routerLink="/">
-              Favour<span class="text-[20px] text-pink-600">Gabriel</span>
-            </a>
-          </h2>
+          <div>
+            <h2 class="h2 capitalize">
+              <a routerLink="/">
+                Favour<span class="text-[20px] text-pink-600">Gabriel</span>
+              </a>
+            </h2>
+            <p class="text-xs text-white/40 hidden lg:block">Mobile & Backend Engineer</p>
+          </div>
 
           <button class="btn btn-sm" (click)="contact()">Contact me</button>
         </div>
@@ -21,11 +24,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  constructor(private router: Router){
-
-  }
+  constructor(private router: Router){}
   contact(): void{
     this.router.navigate(['contact'])
   }
-
 }
