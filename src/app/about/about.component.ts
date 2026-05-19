@@ -9,7 +9,7 @@ import { Subject, interval, takeUntil } from 'rxjs';
   <section class="section min-h-screen">
     <div class="container mx-auto">
       <div class="flex flex-col gap-y-10 lg:flex-row lg:items-center lg:gap-x-20 lg:gap-y-0">
-        <div [@fadeIn] class="flex-1 bg-profile bg-contain bg-no-repeat h-[640px] mix-blend-color-dodge bg-top"></div>
+        <div [@fadeIn] class="flex-1 bg-contain bg-no-repeat h-[640px] mix-blend-color-dodge bg-top" style="background-image: url('assets/img/gab.png')"></div>
         <div [@fadeInRight] class="flex-1">
           <h2 class="h2 text-pink-700 mb-4">About me</h2>
           <ngx-typed-js [strings]="['Mobile & Backend Software Engineer with 4+ years of production experience.',

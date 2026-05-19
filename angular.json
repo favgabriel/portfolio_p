@@ -16,6 +16,7 @@
             "outputPath": "dist/gabriel/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "baseHref": "/portfolio_p/",
             "polyfills": [
               "zone.js"
             ],
